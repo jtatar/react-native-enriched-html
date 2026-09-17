@@ -10,7 +10,6 @@ import {
   copyWholeContent,
   pasteIntoWholeContent,
   pastePlainTextIntoEditor,
-  pastePlainTextOverSelection,
 } from '../helpers/clipboard';
 
 test.setTimeout(90_000);
@@ -608,7 +607,7 @@ test.describe('test-links linkOnPaste', () => {
     await setTestLinksEditorHtml(page, '<html><p>Hello world</p></html>');
     await selectRange(page, 6, 11);
 
-    await pastePlainTextOverSelection(
+    await pastePlainTextIntoEditor(
       page.locator(sel.editorInner),
       'https://example.com'
     );
@@ -623,7 +622,7 @@ test.describe('test-links linkOnPaste', () => {
     await setTestLinksEditorHtml(page, '<html><p>Hello world</p></html>');
     await selectRange(page, 6, 11);
 
-    await pastePlainTextOverSelection(
+    await pastePlainTextIntoEditor(
       page.locator(sel.editorInner),
       'www.example.com'
     );
@@ -640,7 +639,7 @@ test.describe('test-links linkOnPaste', () => {
     await setTestLinksEditorHtml(page, '<html><p>Hello world</p></html>');
     await selectRange(page, 6, 11);
 
-    await pastePlainTextOverSelection(
+    await pastePlainTextIntoEditor(
       page.locator(sel.editorInner),
       'see https://example.com'
     );
@@ -662,7 +661,7 @@ test.describe('test-links linkOnPaste', () => {
     await setTestLinksEditorHtml(page, '<html><p>Hello</p></html>');
     await selectRange(page, 5, 5);
 
-    await pastePlainTextOverSelection(
+    await pastePlainTextIntoEditor(
       page.locator(sel.editorInner),
       'https://example.com'
     );
