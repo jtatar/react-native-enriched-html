@@ -7,6 +7,11 @@
 import type { Editor } from '@tiptap/react';
 
 import { findAutolinkRangesInWord } from '../pmPlugins/AutolinkPlugin/autolinkRegex';
+import { setLink } from '../formats/EnrichedLink';
+import {
+  nativeLeafText,
+  tiptapPosToNativePos,
+} from '../nativeMappers/positionMapping';
 
 /**
  * Returns a normalized href when the whole string is a single URL matching
@@ -50,15 +55,13 @@ export function handleLinkOnPaste(
   const href = linkUrlIfEntireString(pasted, getLinkRegex());
   if (!href) return false;
 
-  const selectedText = editor.state.doc.textBetween(from, to, ' ');
-  if (selectedText.trim().length === 0) return false;
+  const selectedText = nativeLeafText(editor.state.doc, from, to).trim();
+  if (selectedText.length === 0) return false;
 
-  // setLink is overridden in EnrichedLink to bail out when the link style is
-  // blocked (e.g. inside inline code or a code block); a `false` run result
-  // falls through to the default paste handling.
-  if (!editor.chain().setLink({ href }).run()) {
-    return false;
-  }
+  const nativeFrom = tiptapPosToNativePos(editor.state.doc, from);
+  const nativeTo = tiptapPosToNativePos(editor.state.doc, to);
+
+  setLink(editor, nativeFrom, nativeTo, selectedText, href);
 
   event.preventDefault();
   editor.commands.setTextSelection(to);
