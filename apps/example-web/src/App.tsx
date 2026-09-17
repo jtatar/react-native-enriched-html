@@ -291,6 +291,10 @@ function App() {
           linkRegex={LINK_REGEX}
           linkOnPaste
           sanitizationConfig={SANITIZATION_CONFIG}
+          textShortcuts={[
+            { trigger: '++', style: 'center' },
+            { trigger: '##', style: 'h6' },
+          ]}
         />
         <MentionPopup
           variant="user"
