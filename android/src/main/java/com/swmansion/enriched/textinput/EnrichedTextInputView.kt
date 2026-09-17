@@ -120,10 +120,6 @@ class EnrichedTextInputView :
     }
 
   var linkRegex: Pattern? = Patterns.WEB_URL
-
-  // Unlike linkRegex (wrapped for substring detection), this pattern must
-  // match the entire string; used to detect a bare-URL paste over a selection.
-  var linkExactRegex: Pattern? = Patterns.WEB_URL
   var spanWatcher: EnrichedSpanWatcher? = null
   var layoutManager: EnrichedTextInputViewLayoutManager = EnrichedTextInputViewLayoutManager(this)
 
@@ -422,9 +418,14 @@ class EnrichedTextInputView :
     end: Int,
     item: ClipData.Item,
   ): Boolean {
-    val regex = linkExactRegex ?: return false
+    val regex = linkRegex ?: return false
     val pasted = item.text?.toString()?.trim() ?: return false
-    if (pasted.isEmpty() || !regex.matcher(pasted).matches()) return false
+
+    if (pasted.isEmpty() || pasted.any { it.isWhitespace() }) {
+      return false
+    }
+
+    if (!regex.matcher(pasted).matches()) return false
 
     if (currentText.substring(start, end).isBlank()) return false
 
@@ -682,19 +683,16 @@ class EnrichedTextInputView :
     val patternStr = config?.getString("pattern")
     if (patternStr == null) {
       linkRegex = Patterns.WEB_URL
-      linkExactRegex = Patterns.WEB_URL
       return
     }
 
     if (config.getBoolean("isDefault")) {
       linkRegex = Patterns.WEB_URL
-      linkExactRegex = Patterns.WEB_URL
       return
     }
 
     if (config.getBoolean("isDisabled")) {
       linkRegex = null
-      linkExactRegex = null
       return
     }
 
@@ -704,11 +702,9 @@ class EnrichedTextInputView :
 
     try {
       linkRegex = Pattern.compile("(?s).*?($patternStr).*", flags)
-      linkExactRegex = Pattern.compile(patternStr, flags)
     } catch (_: PatternSyntaxException) {
       Log.w(TAG, "Invalid link regex pattern: $patternStr")
       linkRegex = Patterns.WEB_URL
-      linkExactRegex = Patterns.WEB_URL
     }
   }
 
