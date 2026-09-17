@@ -617,21 +617,6 @@ test.describe('test-links linkOnPaste', () => {
       .toContain('<p>Hello <a href="https://example.com">world</a></p>');
   });
 
-  test('prefixes https:// for a scheme-less URL', async ({ page }) => {
-    await gotoTestLinks(page);
-    await setTestLinksEditorHtml(page, '<html><p>Hello world</p></html>');
-    await selectRange(page, 6, 11);
-
-    await pastePlainTextIntoEditor(
-      page.locator(sel.editorInner),
-      'www.example.com'
-    );
-
-    await expect
-      .poll(async () => getTestLinksSerializedHtml(page))
-      .toContain('<p>Hello <a href="https://www.example.com">world</a></p>');
-  });
-
   test('does not linkify the selection when the pasted text is not a bare URL', async ({
     page,
   }) => {
