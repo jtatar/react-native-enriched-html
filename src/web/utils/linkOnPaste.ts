@@ -55,13 +55,13 @@ export function handleLinkOnPaste(
   const href = linkUrlIfEntireString(pasted, getLinkRegex());
   if (!href) return false;
 
-  const selectedText = nativeLeafText(editor.state.doc, from, to).trim();
-  if (selectedText.length === 0) return false;
+  const selectedText = nativeLeafText(editor.state.doc, from, to);
+  if (selectedText.trim().length === 0) return false;
 
   const nativeFrom = tiptapPosToNativePos(editor.state.doc, from);
   const nativeTo = tiptapPosToNativePos(editor.state.doc, to);
 
-  setLink(editor, nativeFrom, nativeTo, selectedText, href);
+  if (!setLink(editor, nativeFrom, nativeTo, selectedText, href)) return false;
 
   event.preventDefault();
   editor.commands.setTextSelection(to);
