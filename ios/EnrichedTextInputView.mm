@@ -1568,15 +1568,7 @@ Class<RCTComponentViewProtocol> EnrichedTextInputViewCls(void) {
     return nullptr;
   }
 
-  NSStringCompareOptions prefixOpts =
-      NSCaseInsensitiveSearch | NSAnchoredSearch;
-  if ([text rangeOfString:@"http://" options:prefixOpts].location !=
-          NSNotFound ||
-      [text rangeOfString:@"https://" options:prefixOpts].location !=
-          NSNotFound) {
-    return text;
-  }
-  return [@"https://" stringByAppendingString:text];
+  return text;
 }
 
 - (void)removeLinkAt:(NSInteger)start end:(NSInteger)end {

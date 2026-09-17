@@ -34,7 +34,7 @@ function linkUrlIfEntireString(
     return null;
   }
 
-  return /^https?:\/\//i.test(text) ? text : `https://${text}`;
+  return text;
 }
 
 export function handleLinkOnPaste(

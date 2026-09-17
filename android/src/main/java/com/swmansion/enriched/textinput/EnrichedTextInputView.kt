@@ -440,14 +440,7 @@ class EnrichedTextInputView :
     val selectedText = (text as Spannable).substring(freshStart, freshEnd)
     if (selectedText.isBlank()) return false
 
-    val href =
-      if (pasted.startsWith("http://", ignoreCase = true) || pasted.startsWith("https://", ignoreCase = true)) {
-        pasted
-      } else {
-        "https://$pasted"
-      }
-
-    styles.setLinkSpan(freshStart, freshEnd, selectedText, href)
+    styles.setLinkSpan(freshStart, freshEnd, selectedText, pasted)
     setSelection((freshStart + selectedText.length).coerceIn(0, text?.length ?: 0))
     return true
   }
