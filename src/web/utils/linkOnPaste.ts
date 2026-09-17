@@ -14,7 +14,7 @@ import {
 } from '../nativeMappers/positionMapping';
 
 /**
- * Returns a normalized href when the whole string is a single URL matching
+ * Returns a href when the whole string is a single word URL matching
  * the configured link regex, `null` otherwise. `linkRegex === null` means
  * link detection is disabled.
  */

@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
               end:(NSInteger)end
              text:(NSString *)text
               url:(NSString *)url;
-- (nullable NSString *)linkURLIfEntireString:(NSString *)text;
+- (nullable NSString *)linkTextIfMatchesLinkRegex:(NSString *)text;
 - (void)emitOnLinkDetectedEvent:(LinkData *)linkData range:(NSRange)range;
 - (void)emitOnMentionEvent:(NSString *)indicator text:(nullable NSString *)text;
 - (void)emitOnPasteImagesEvent:(NSArray<NSDictionary *> *)images;

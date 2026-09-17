@@ -1550,9 +1550,7 @@ Class<RCTComponentViewProtocol> EnrichedTextInputViewCls(void) {
   return YES;
 }
 
-// Returns a normalized href when the whole string is a single URL matching
-// the link regex config; used by the linkOnPaste behavior.
-- (NSString *)linkURLIfEntireString:(NSString *)text {
+- (NSString *)linkTextIfMatchesLinkRegex:(NSString *)text {
   if (text.length == 0) {
     return nullptr;
   }

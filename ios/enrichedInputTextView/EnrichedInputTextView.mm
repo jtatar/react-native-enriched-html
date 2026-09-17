@@ -186,7 +186,7 @@
     NSString *candidate = [[self plainTextIn:pasteboard]
         stringByTrimmingCharactersInSet:whitespace];
     NSString *linkUrl = candidate.length > 0
-                            ? [typedInput linkURLIfEntireString:candidate]
+                            ? [typedInput linkTextIfMatchesLinkRegex:candidate]
                             : nullptr;
 
     if (linkUrl != nullptr) {
