@@ -195,10 +195,10 @@
 
       if ([selectedText stringByTrimmingCharactersInSet:whitespace].length >
               0 &&
-          [typedInput tryAddLinkAt:currentRange.location
-                               end:NSMaxRange(currentRange)
-                              text:selectedText
-                               url:linkUrl]) {
+          [typedInput addLinkAt:currentRange.location
+                            end:NSMaxRange(currentRange)
+                           text:selectedText
+                            url:linkUrl]) {
         return;
       }
     }

@@ -32,8 +32,6 @@
 - (void)applyLinkMetaWithData:(LinkData *)linkData range:(NSRange)range;
 + (BOOL)matchesLinkRegexWithConfig:(NSString *)url
                             config:(EnrichedConfig *)config;
-+ (BOOL)matchesEntireLinkRegexWithConfig:(NSString *)url
-                                  config:(EnrichedConfig *)config;
 @end
 
 @interface MentionStyle : StyleBase

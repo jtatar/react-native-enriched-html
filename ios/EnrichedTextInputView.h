@@ -43,10 +43,10 @@ NS_ASSUME_NONNULL_BEGIN
   NSArray<NSDictionary *> *textShortcuts;
 }
 - (CGSize)measureSize:(CGFloat)maxWidth;
-- (BOOL)tryAddLinkAt:(NSInteger)start
-                 end:(NSInteger)end
-                text:(NSString *)text
-                 url:(NSString *)url;
+- (BOOL)addLinkAt:(NSInteger)start
+              end:(NSInteger)end
+             text:(NSString *)text
+              url:(NSString *)url;
 - (nullable NSString *)linkURLIfEntireString:(NSString *)text;
 - (void)emitOnLinkDetectedEvent:(LinkData *)linkData range:(NSRange)range;
 - (void)emitOnMentionEvent:(NSString *)indicator text:(nullable NSString *)text;

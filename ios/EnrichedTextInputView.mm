@@ -1524,17 +1524,10 @@ Class<RCTComponentViewProtocol> EnrichedTextInputViewCls(void) {
   }
 }
 
-- (void)addLinkAt:(NSInteger)start
+- (BOOL)addLinkAt:(NSInteger)start
               end:(NSInteger)end
              text:(NSString *)text
               url:(NSString *)url {
-  [self tryAddLinkAt:start end:end text:text url:url];
-}
-
-- (BOOL)tryAddLinkAt:(NSInteger)start
-                 end:(NSInteger)end
-                text:(NSString *)text
-                 url:(NSString *)url {
   LinkStyle *linkStyleClass = (LinkStyle *)stylesDict[@([LinkStyle getType])];
   if (linkStyleClass == nullptr) {
     return NO;
@@ -1564,7 +1557,14 @@ Class<RCTComponentViewProtocol> EnrichedTextInputViewCls(void) {
     return nullptr;
   }
 
-  if (![LinkStyle matchesEntireLinkRegexWithConfig:text config:config]) {
+  NSRange whitespaceRange =
+      [text rangeOfCharacterFromSet:[NSCharacterSet
+                                        whitespaceAndNewlineCharacterSet]];
+  if (whitespaceRange.location != NSNotFound) {
+    return nullptr;
+  }
+
+  if (![LinkStyle matchesLinkRegexWithConfig:text config:config]) {
     return nullptr;
   }
 
