@@ -1,5 +1,5 @@
 /**
- * The `linkOnPaste` behavior: pasting clipboard content that consists solely
+ * The `applyLinkOnPaste` behavior: pasting clipboard content that consists solely
  * of a URL over a non-empty selection turns the selection into a link
  * pointing to that URL instead of replacing it.
  */
@@ -37,13 +37,13 @@ function linkUrlIfEntireString(
   return text;
 }
 
-export function handleLinkOnPaste(
+export function handleApplyLinkOnPaste(
   event: ClipboardEvent,
   getEditor: () => Editor | null,
-  getLinkOnPaste: () => boolean | undefined,
+  getApplyLinkOnPaste: () => boolean | undefined,
   getLinkRegex: () => RegExp | null | undefined
 ): boolean {
-  if (!getLinkOnPaste()) return false;
+  if (!getApplyLinkOnPaste()) return false;
 
   const editor = getEditor();
   if (!editor) return false;

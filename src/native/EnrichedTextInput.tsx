@@ -60,7 +60,7 @@ export const EnrichedTextInput = ({
   autoCapitalize = ENRICHED_TEXT_INPUT_DEFAULT_PROPS.autoCapitalize,
   htmlStyle = ENRICHED_TEXT_INPUT_DEFAULT_PROPS.htmlStyle,
   linkRegex: _linkRegex,
-  linkOnPaste = ENRICHED_TEXT_INPUT_DEFAULT_PROPS.linkOnPaste,
+  applyLinkOnPaste = ENRICHED_TEXT_INPUT_DEFAULT_PROPS.applyLinkOnPaste,
   onFocus,
   onBlur,
   onChangeText,
@@ -343,7 +343,7 @@ export const EnrichedTextInput = ({
       autoCapitalize={autoCapitalize}
       htmlStyle={normalizedHtmlStyle}
       linkRegex={linkRegex}
-      linkOnPaste={linkOnPaste}
+      applyLinkOnPaste={applyLinkOnPaste}
       onInputFocus={onFocus}
       onInputBlur={onBlur}
       onChangeText={onChangeText}

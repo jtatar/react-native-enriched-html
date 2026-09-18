@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @public
   BOOL preserveTypingAttributesOnNextEmptyCheck;
 @public
-  BOOL linkOnPaste;
+  BOOL applyLinkOnPaste;
 }
 - (CGSize)measureSize:(CGFloat)maxWidth;
 - (void)emitOnLinkDetectedEvent:(LinkData *)linkData range:(NSRange)range;

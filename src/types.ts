@@ -695,7 +695,7 @@ export interface EnrichedTextInputProps extends Omit<ViewProps, 'children'> {
    * Has no effect when link detection is disabled via `linkRegex={null}`.
    * Disabled by default.
    */
-  linkOnPaste?: boolean;
+  applyLinkOnPaste?: boolean;
 
   /** The label shown on the return key of the software keyboard. */
   returnKeyType?: ReturnKeyTypeOptions;

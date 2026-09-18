@@ -205,7 +205,7 @@ The recognized mention indicators. Each item must be a 1-character string. See
 | ---------- | ------- | ----------------- |
 | `string[]` | `['@']` | Android, iOS, Web |
 
-### `linkOnPaste` {#linkonpaste}
+### `applyLinkOnPaste` {#applylinkonpaste}
 
 If `true`, pasting clipboard content that consists solely of a URL while some text is selected turns the selection into a link pointing to that URL, instead of replacing the selected text with the pasted content.
 

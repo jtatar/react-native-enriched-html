@@ -694,9 +694,9 @@ Class<RCTComponentViewProtocol> EnrichedTextInputViewCls(void) {
     useHtmlNormalizer = newViewProps.useHtmlNormalizer;
   }
 
-  // linkOnPaste
-  if (newViewProps.linkOnPaste != oldViewProps.linkOnPaste) {
-    linkOnPaste = newViewProps.linkOnPaste;
+  // applyLinkOnPaste
+  if (newViewProps.applyLinkOnPaste != oldViewProps.applyLinkOnPaste) {
+    applyLinkOnPaste = newViewProps.applyLinkOnPaste;
   }
 
   // textShortcuts

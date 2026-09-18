@@ -52,7 +52,7 @@ export function DevScreen({ onSwitch }: DevScreenProps) {
             cursorColor="dodgerblue"
             autoCapitalize="sentences"
             linkRegex={LINK_REGEX}
-            linkOnPaste
+            applyLinkOnPaste
             onChangeText={(e) => editor.handleChangeText(e.nativeEvent)}
             onChangeHtml={(e) => editor.handleChangeHtml(e.nativeEvent)}
             onChangeState={(e) => editor.handleChangeState(e.nativeEvent)}

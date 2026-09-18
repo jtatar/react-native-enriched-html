@@ -86,7 +86,7 @@ export function TestLinks() {
               : undefined
           }
           linkRegex={appliedLinkRegex}
-          linkOnPaste
+          applyLinkOnPaste
         />
       </div>
 

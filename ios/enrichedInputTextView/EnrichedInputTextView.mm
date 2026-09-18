@@ -178,9 +178,9 @@
     return;
   }
 
-  // linkOnPaste: pasting a bare URL over selected text turns the selection
+  // applyLinkOnPaste: pasting a bare URL over selected text turns the selection
   // into a link pointing to that URL instead of replacing it.
-  if (typedInput->linkOnPaste && currentRange.length > 0) {
+  if (typedInput->applyLinkOnPaste && currentRange.length > 0) {
     NSCharacterSet *whitespace =
         [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSString *candidate = [[self plainTextIn:pasteboard]

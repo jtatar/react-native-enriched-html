@@ -127,7 +127,7 @@ class EnrichedTextInputView :
   var shouldEmitOnChangeText: Boolean = false
   var experimentalSynchronousEvents: Boolean = false
   var useHtmlNormalizer: Boolean = false
-  var linkOnPaste: Boolean = false
+  var applyLinkOnPaste: Boolean = false
 
   // Pair: (trigger, style)
   var textShortcuts: List<Pair<String, String>> = emptyList()
@@ -377,7 +377,7 @@ class EnrichedTextInputView :
     val end = selectionEnd.coerceAtLeast(0)
     val lengthBefore = currentText.length
 
-    if (linkOnPaste && start < end && linkifySelectionOnPaste(currentText, start, end, item)) {
+    if (applyLinkOnPaste && start < end && linkifySelectionOnPaste(currentText, start, end, item)) {
       return
     }
 
@@ -411,7 +411,7 @@ class EnrichedTextInputView :
   }
 
   // Pasting a bare URL over selected text turns the selection into a link
-  // pointing to that URL instead of replacing it (the linkOnPaste prop).
+  // pointing to that URL instead of replacing it (the applyLinkOnPaste prop).
   private fun linkifySelectionOnPaste(
     currentText: Spannable,
     start: Int,

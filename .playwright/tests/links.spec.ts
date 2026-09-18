@@ -589,7 +589,7 @@ test.describe('test-links copy-paste', () => {
   });
 });
 
-test.describe('test-links linkOnPaste', () => {
+test.describe('test-links applyLinkOnPaste', () => {
   async function selectRange(
     page: Page,
     start: number,
@@ -651,7 +651,7 @@ test.describe('test-links linkOnPaste', () => {
       'https://example.com'
     );
 
-    // With no selection linkOnPaste is a no-op: the existing "Hello" must not
+    // With no selection applyLinkOnPaste is a no-op: the existing "Hello" must not
     // be wrapped in a link pointing at the pasted URL.
     await expect
       .poll(async () => getTestLinksSerializedHtml(page))

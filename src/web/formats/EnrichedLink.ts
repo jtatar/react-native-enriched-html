@@ -69,7 +69,7 @@ export const EnrichedLink = Link.extend<
       ...parent,
       openOnClick: false,
       autolink: false,
-      linkOnPaste: false,
+      applyLinkOnPaste: false,
       HTMLAttributes: {
         ...parent.HTMLAttributes,
         target: null,
