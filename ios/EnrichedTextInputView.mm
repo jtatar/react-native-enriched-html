@@ -1525,6 +1525,7 @@ Class<RCTComponentViewProtocol> EnrichedTextInputViewCls(void) {
   }
 }
 
+// return value informs us whether the link has been properly added or not
 - (BOOL)addLinkAt:(NSInteger)start
               end:(NSInteger)end
              text:(NSString *)text
