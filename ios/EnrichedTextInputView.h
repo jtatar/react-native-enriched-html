@@ -54,7 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
               end:(NSInteger)end
              text:(NSString *)text
               url:(NSString *)url;
-- (nullable NSString *)linkTextIfMatchesLinkRegex:(NSString *)text;
 
 @end
 

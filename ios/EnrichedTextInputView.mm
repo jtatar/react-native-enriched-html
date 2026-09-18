@@ -1552,25 +1552,6 @@ Class<RCTComponentViewProtocol> EnrichedTextInputViewCls(void) {
   return YES;
 }
 
-- (NSString *)linkTextIfMatchesLinkRegex:(NSString *)text {
-  if (text.length == 0) {
-    return nullptr;
-  }
-
-  NSRange whitespaceRange =
-      [text rangeOfCharacterFromSet:[NSCharacterSet
-                                        whitespaceAndNewlineCharacterSet]];
-  if (whitespaceRange.location != NSNotFound) {
-    return nullptr;
-  }
-
-  if (![LinkStyle matchesLinkRegexWithConfig:text config:config]) {
-    return nullptr;
-  }
-
-  return text;
-}
-
 - (void)removeLinkAt:(NSInteger)start end:(NSInteger)end {
   LinkStyle *linkStyleClass = (LinkStyle *)stylesDict[@([LinkStyle getType])];
   if (linkStyleClass == nullptr) {

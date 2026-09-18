@@ -185,9 +185,8 @@
         [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSString *candidate = [[self plainTextIn:pasteboard]
         stringByTrimmingCharactersInSet:whitespace];
-    NSString *linkUrl = candidate.length > 0
-                            ? [typedInput linkTextIfMatchesLinkRegex:candidate]
-                            : nullptr;
+    NSString *linkUrl =
+        [self linkTextIfMatchesLinkRegex:candidate] ? candidate : nullptr;
 
     if (linkUrl != nullptr) {
       NSString *selectedText = [typedInput->textView.textStorage.string
@@ -241,6 +240,30 @@
   }
 
   [typedInput anyTextMayHaveBeenModified];
+}
+
+- (BOOL)linkTextIfMatchesLinkRegex:(NSString *)text {
+  if (text.length == 0) {
+    return false;
+  }
+
+  NSRange whitespaceRange =
+      [text rangeOfCharacterFromSet:[NSCharacterSet
+                                        whitespaceAndNewlineCharacterSet]];
+  if (whitespaceRange.location != NSNotFound) {
+    return false;
+  }
+
+  EnrichedTextInputView *input = (EnrichedTextInputView *)_input;
+  if (input == nullptr) {
+    return false;
+  }
+
+  if (![LinkStyle matchesLinkRegexWithConfig:text config:input.config]) {
+    return false;
+  }
+
+  return true;
 }
 
 - (NSDictionary *)detectImageFormat:(NSString *)type {
