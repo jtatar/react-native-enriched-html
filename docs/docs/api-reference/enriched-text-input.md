@@ -59,6 +59,7 @@ interface EnrichedTextInputProps extends Omit<ViewProps, 'children'> {
   onChangeHtml?: (e: NativeSyntheticEvent<OnChangeHtmlEvent>) => void;
   onChangeState?: (e: NativeSyntheticEvent<OnChangeStateEvent>) => void;
   onLinkDetected?: (e: OnLinkDetected) => void;
+  onLinkPress?: (event: OnLinkPressEvent) => void;
   onMentionDetected?: (e: OnMentionDetected) => void;
   onStartMention?: (indicator: string) => void;
   onChangeMention?: (e: OnChangeMentionEvent) => void;
@@ -84,6 +85,14 @@ All props are optional.
 ### `allowFontScaling` {#allowfontscaling}
 
 If `true`, the input respects the system's accessibility font scaling settings.
+
+| Type      | Default | Platforms    |
+| --------- | ------- | ------------ |
+| `boolean` | `true`  | Android, iOS |
+
+### `autoCorrect` {#autocorrect}
+
+If false, disables auto-correct.
 
 | Type      | Default | Platforms    |
 | --------- | ------- | ------------ |
@@ -429,6 +438,23 @@ interface OnLinkDetected {
 | --------------------------------- | ----------------- |
 | `(event: OnLinkDetected) => void` | Android, iOS, Web |
 
+### `onLinkPress` {#onlinkpress}
+
+Called when the user clicks a link inside the editor. Receives an
+`OnLinkPressEvent` containing the link's URL. If not provided, clicking a link
+has no effect. See [Links](/rich-text-formatting/links) for more on how links
+are created and detected.
+
+```ts
+interface OnLinkPressEvent {
+  url: string;
+}
+```
+
+| Type                                | Platforms |
+| ----------------------------------- | --------- |
+| `(event: OnLinkPressEvent) => void` | Web       |
+
 ### `onMentionDetected` {#onmentiondetected}
 
 Called when the
@@ -642,6 +668,14 @@ cursor (caret) also uses this color.
 | Type                                           | Default        | Platforms         |
 | ---------------------------------------------- | -------------- | ----------------- |
 | [`color`](https://reactnative.dev/docs/colors) | system default | Android, iOS, Web |
+
+### `spellCheck` {#spellcheck}
+
+If false, disables spell-check style (i.e. red underlines). The default value is inherited from the [`autoCorrect`](#autocorrect) prop.
+
+| Type      | Default                       | Platforms |
+| --------- | ----------------------------- | --------- |
+| `boolean` | [`autoCorrect`](#autocorrect) | iOS       |
 
 ### `style` {#style}
 
